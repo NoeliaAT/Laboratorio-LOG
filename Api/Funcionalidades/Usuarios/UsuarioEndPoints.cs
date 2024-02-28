@@ -1,12 +1,12 @@
-using System;
+using Microsoft.AspNetCore.Mvc;
 namespace Api.Funcionalidades.Usuarios;
 
 public static class UsuarioEndPoints
 
 {
-    public static void AddUsuarioEndPoints(this WebApplication app)
+    public static void MapUsuarioEndPoints(this WebApplication app)
     {
-        app.MapGet("/Api/usuario", (UsuarioService usuarioService) =>
+        app.MapGet("/api/usuario", ([FromServices] IUsuarioService usuarioService) =>
         {
             return Results.Ok(usuarioService.GetUsuarios());
         });
