@@ -1,5 +1,7 @@
+using Api.Funcionalidades;
 using Api.Funcionalidades.Domicilios;
 using Api.Funcionalidades.Usuarios;
+using Carter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IUsuarioService, UsuarioService> ();
-builder.Services.AddSingleton<IDomicilioService, DomicilioService> ();
+builder.Services.AddServiceManager();
+builder.Services.AddCarter();
 
 var app = builder.Build();
 
@@ -22,8 +24,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapUsuarioEndPoints();
-app.MapDomicilioEndPoints();
+//app.MapUsuarioEndPoints();
+//app.MapDomicilioEndPoints();
+
+app.MapCarter();
 
 
 app.UseHttpsRedirection();
@@ -35,4 +39,4 @@ app.MapControllers();
 app.Run();
 
 
-// video 2 minuto 32//
+// video 3 minuto 1:30//

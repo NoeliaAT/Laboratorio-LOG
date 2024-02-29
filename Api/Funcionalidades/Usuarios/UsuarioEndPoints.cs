@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Funcionalidades.Usuarios;
 
-public static class UsuarioEndPoints
+public static class UsuarioEndPoints : ICarterModule
 
 {
-    public static void MapUsuarioEndPoints(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/usuario", ([FromServices] IUsuarioService usuarioService) =>
         {

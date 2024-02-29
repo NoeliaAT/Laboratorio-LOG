@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Funcionalidades.Domicilios;
 
-public static class DomicilioEndPoints
+public static class DomicilioEndPoints : ICarterModule 
 {
-    public static void MapDomicilioEndPoints(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/domicilio", ([FromServices] IDomicilioService domicilioService) =>
         {
