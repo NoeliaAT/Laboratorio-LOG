@@ -1,7 +1,8 @@
+using Carter;
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Funcionalidades.Usuarios;
 
-public static class UsuarioEndPoints : ICarterModule
+public class UsuarioEndPoints : ICarterModule
 
 {
     public void AddRoutes(IEndpointRouteBuilder app)

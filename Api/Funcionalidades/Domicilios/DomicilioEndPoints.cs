@@ -1,7 +1,9 @@
+using Carter;
 using Microsoft.AspNetCore.Mvc;
+
 namespace Api.Funcionalidades.Domicilios;
 
-public static class DomicilioEndPoints : ICarterModule 
+public class DomicilioEndPoints : ICarterModule 
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
