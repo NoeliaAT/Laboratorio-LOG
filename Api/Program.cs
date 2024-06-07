@@ -1,7 +1,7 @@
 using Api.Funcionalidades;
-using Api.Funcionalidades.Domicilios;
-using Api.Funcionalidades.Usuarios;
+using Api.Persistencia;
 using Carter;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddServiceManager();
 builder.Services.AddCarter();
+
+var connectionString = builder.Configuration.GetConnectionString("aplicacion_db");
+
+builder.Services.AddDbContext<AplicacionDbContext>(opcion =>
+    opcion.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30))));
+
+builder.Services.AddDbContext<AplicacionDbContext>();
+
 
 var app = builder.Build();
 
@@ -39,4 +47,4 @@ app.MapControllers();
 app.Run();
 
 
-// video 4 minuto 5:20//
+// video 4 minuto 18:50//
