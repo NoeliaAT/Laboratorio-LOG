@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Persistencia;
 
-public class AplicaciónDbContext : DbContext
+public class AplicacionDbContext : DbContext
 {
-    public AplicaciónDbContext(DbContextOptions<AplicaciónDbContext> opciones)
+    public AplicacionDbContext(DbContextOptions<AplicacionDbContext> opciones)
     : base(opciones)
     {
     }
