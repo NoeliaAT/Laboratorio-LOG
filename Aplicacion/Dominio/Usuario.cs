@@ -6,6 +6,11 @@ namespace Aplicacion.Dominio;
 [Table("Usuario")]
 public class Usuario
 {
+    
+    [Key]
+    [Required]
+    public Guid Id { get; set; } = Guid.NewGuid();
+    
     [Required]
     [StringLength(50)]
     public string Nombre { get; set; } = string.Empty; 
@@ -14,7 +19,6 @@ public class Usuario
     [StringLength(50)]
     public string Apellido { get; set; } = string.Empty;
 
-    [Key]
     [Required]
     [StringLength(50)]
     public string Direccion { get; set; } = string.Empty;
