@@ -1,3 +1,4 @@
+using Api.Persistencia;
 using Aplicacion.Dominio;
 
 namespace Api.Funcionalidades.Usuarios;   
@@ -9,19 +10,15 @@ public interface IUsuarioService
 
 public class UsuarioService : IUsuarioService
 {
-    List<Usuario> usuarios;
+    private readonly AplicacionDbContext context;
 
-    public UsuarioService()
+    public UsuarioService(AplicacionDbContext context)
     {
-        usuarios = new List<Usuario>()
-        {
-            new Usuario("Maria", "Mar", "Av.Cabildo"),
-            new Usuario("Juan", "Mar", "Av.Libertador")
-        };
+        this.context = context;
     }
 
     public List<Usuario> GetUsuarios()
     {
-        return usuarios;
+        return context.Usuarios.ToList();
     }
 }
