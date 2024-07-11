@@ -6,7 +6,11 @@ namespace Aplicacion.Dominio;
 [Table("Domicilio")]
 public class Domicilio
 {
+    
     [Key]
+    [Required]
+    public Guid Id { get; set; } = Guid.NewGuid();
+    
     [Required]
     public string Calle { get; set; } = string.Empty;
 

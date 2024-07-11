@@ -1,3 +1,4 @@
+using Api.Persistencia;
 using Aplicacion.Dominio;
 
 namespace Api.Funcionalidades.Domicilios;   
@@ -9,20 +10,15 @@ public interface IDomicilioService
 
 public class DomicilioService : IDomicilioService
 {
+    private readonly AplicacionDbContext context;
 
-    List<Domicilio> domicilios;
-
-    public DomicilioService()
+    public DomicilioService(AplicacionDbContext context)
     {
-        domicilios = new List<Domicilio>()
-        {
-            new Domicilio("Av.Cabildo", 1054, 1104),
-            new Domicilio("Av.Libertador", 2120, 1104)
-        };
+        this.context = context;
     }
 
-    List<Domicilio> IDomicilioService.GetDomicilios()
+    public List<Domicilio> GetDomicilios()
     {
-        return domicilios;
+        return context.Domicilios.ToList();
     }
 }

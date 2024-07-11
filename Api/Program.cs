@@ -60,3 +60,4 @@ app.Run();
 // revisar msql en casa, revisar version,  video 4 minuto 24:00 //
 //code farce:  es código fuente, primero hago el código c# y después de ahi genera el sql
 //daba base farce: a partir de una base de datos existente (con datos o no cargados), tiro el comando de linea para traerme la base de datos y automáticamente (Entity) lo convierte en c#
+// video 5 minuto 10:00 tiene datos importantes//
