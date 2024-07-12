@@ -36,7 +36,14 @@ public class DomicilioEndPoints : ICarterModule
 
         app.MapPost("/api/domicilio/{domicilioId}/usuario/{usuarioId}", ([FromServices] IDomicilioService domicilioService,Guid domicilioId,Guid usuarioId) =>
         {
-            domicilioService.AddUsuario(usuarioId, domicilioId);
+            domicilioService.AddUsuarioToDomicilio(usuarioId, domicilioId);
+
+            return Results.Ok();
+        });
+
+        app.MapDelete("/api/domicilio/{domicilioId}/usuario/{usuarioId}", ([FromServices] IDomicilioService domicilioService,Guid domicilioId,Guid usuarioId) =>
+        {
+            domicilioService.DeleteUsuarioFromDomicilio(usuarioId, domicilioId);
 
             return Results.Ok();
         });

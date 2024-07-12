@@ -37,4 +37,9 @@ public class Usuario
     {
         throw new NotImplementedException();
     }
+
+    internal static void Remove(Usuario usuario)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -35,4 +35,6 @@ public class Domicilio
     }
 
     public void AgregarUsuario(Usuario usuario) => Usuario.Add(usuario);
+
+    public void BorrarUsuario(Usuario usuario) => Usuario.Remove(usuario);
 }
