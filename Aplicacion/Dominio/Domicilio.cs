@@ -9,9 +9,6 @@ public class Domicilio
     
     [Key]
     [Required]
-    public Guid Id { get; set; } = Guid.NewGuid();
-    
-    [Required]
     public string Calle { get; set; } = string.Empty;
 
     [Required]
@@ -26,5 +23,10 @@ public class Domicilio
         this.Calle = calle;
         this.Altura = altura;
         this.CodigoPostal = codigoPostal;
+    }
+
+    public Domicilio(string calle)
+    {
+        Calle = calle;
     }
 }
