@@ -9,6 +9,10 @@ public class Domicilio
     
     [Key]
     [Required]
+    public Guid Id { get; set; } = Guid.NewGuid();
+    
+    [Required]
+    [StringLength(50)]
     public string Calle { get; set; } = string.Empty;
 
     [Required]
