@@ -5,6 +5,7 @@ namespace Api.Funcionalidades.Domicilios;
 
 public interface IDomicilioService
 {
+    void AddUsuario(Guid usuarioId, Guid domicilioId);
     void CreateDomicilio(DomicilioDto domicilioDto);
     void DeleteDomicilio(Guid domicilioId);
     List<Domicilio> GetDomicilios();
@@ -18,6 +19,20 @@ public class DomicilioService : IDomicilioService
     public DomicilioService(AplicacionDbContext context)
     {
         this.context = context;
+    }
+
+    public void AddUsuario(Guid usuarioId, Guid domicilioId)
+    {
+        var usuario = context.Usuarios.FirstOrDefault(x => x.Id == usuarioId);
+
+        var domicilio = context.Domicilios.FirstOrDefault(x => x.Id == domicilioId);
+
+        if (usuario != null && domicilio != null)
+        {
+            domicilio.AgregarUsuario(usuario);
+
+            context.SaveChanges();
+        }
     }
 
     public void CreateDomicilio(DomicilioDto domicilioDto)

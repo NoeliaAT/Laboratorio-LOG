@@ -33,4 +33,6 @@ public class Domicilio
     {
         Calle = calle;
     }
+
+    public void AgregarUsuario(Usuario usuario) => Usuario.Add(usuario);
 }

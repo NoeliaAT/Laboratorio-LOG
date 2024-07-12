@@ -23,10 +23,18 @@ public class Usuario
     [StringLength(50)]
     public string Direccion { get; set; } = string.Empty;
 
+    [ForeignKey("IdDomicilio")]
+    public Domicilio? Domicilio { get; set;} = null;
+
     public Usuario(string nombre, string apellido, string direccion)
     {
         this.Nombre = nombre;
         this.Apellido = apellido;
         this.Direccion = direccion;
+    }
+
+    internal static void Add(Usuario usuario)
+    {
+        throw new NotImplementedException();
     }
 }
