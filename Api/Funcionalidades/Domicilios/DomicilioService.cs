@@ -1,16 +1,18 @@
+using Api.Funcionalidades.Usuarios;
 using Api.Persistencia;
 using Aplicacion.Dominio;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Funcionalidades.Domicilios;   
 
 public interface IDomicilioService
 {
     void AddUsuarioToDomicilio(Guid usuarioId, Guid domicilioId);
-    void CreateDomicilio(DomicilioDto domicilioDto);
-    void DeleteDomicilio(Guid domicilioId);
+    void CreateUsuario(DomicilioCommandDto domicilioDto);
+    void DeleteUsuario(Guid domicilioId);
     void DeleteUsuarioFromDomicilio(Guid usuarioId, Guid domicilioId);
-    List<Domicilio> GetDomicilios();
-    void UpdateDomicilio(Guid domicilioId, DomicilioDto domicilioDto);
+    List<DomicilioQueryDto> GetDomicilios();
+    void UpdateDomicilio(Guid domicilioId, DomicilioCommandDto domicilioDto);
 }
 
 public class DomicilioService : IDomicilioService
@@ -36,14 +38,14 @@ public class DomicilioService : IDomicilioService
         }
     }
 
-    public void CreateDomicilio(DomicilioDto domicilioDto)
+    public void CreateUsuario(DomicilioCommandDto domicilioDto)
     {
         context.Domicilios.Add(new Domicilio(domicilioDto.Calle));
 
         context.SaveChanges();
     }
 
-    public void DeleteDomicilio(Guid domicilioId)
+    public void DeleteUsuario(Guid domicilioId)
     {
         var domicilio = context.Domicilios.FirstOrDefault(x => x.Id == domicilioId);
 
@@ -69,12 +71,21 @@ public class DomicilioService : IDomicilioService
         }
     }
 
-    public List<Domicilio> GetDomicilios()
+    public List<DomicilioQueryDto> GetDomicilios()
     {
-        return context.Domicilios.ToList();
+        return context.Domicilios.
+        Include(x => x.Usuarios)
+        .Select(x => new DomicilioQueryDto
+        { 
+            Id = x.Id,
+            Calle = x.Calle,
+            Altura = x.Altura,
+            CodigoPostal = x.CodigoPostal,
+            Usuarios = x.Usuarios.Select(y => new UsuarioQueryDto { Id = y.Id, Nombre = y.Nombre, Apellido = y.Apellido, Direccion = y.Direccion }).ToList()
+        }).ToList();
     }
 
-    public void UpdateDomicilio(Guid domicilioId, DomicilioDto domicilioDto)
+    public void UpdateDomicilio(Guid domicilioId, DomicilioCommandDto domicilioDto)
     {
         var domicilio = context.Domicilios.FirstOrDefault(x => x.Id == domicilioId);
 

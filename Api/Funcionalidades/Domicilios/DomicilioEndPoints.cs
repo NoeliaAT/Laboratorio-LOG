@@ -13,14 +13,14 @@ public class DomicilioEndPoints : ICarterModule
         });
         
 
-        app.MapPost("/api/domicilio", ([FromServices] IDomicilioService domicilioService, DomicilioDto domicilioDto) =>
+        app.MapPost("/api/domicilio", ([FromServices] IDomicilioService domicilioService, DomicilioCommandDto domicilioDto) =>
         {
-            domicilioService.CreateDomicilio(domicilioDto);
+            domicilioService.CreateUsuario(domicilioDto);
 
             return Results.Ok();
         });
 
-        app.MapPut("/api/domicilio/{domicilioId}", ([FromServices] IDomicilioService domicilioService,Guid domicilioId, DomicilioDto domicilioDto) =>
+        app.MapPut("/api/domicilio/{domicilioId}", ([FromServices] IDomicilioService domicilioService,Guid domicilioId, DomicilioCommandDto domicilioDto) =>
         {
             domicilioService.UpdateDomicilio(domicilioId, domicilioDto);
 
@@ -29,7 +29,7 @@ public class DomicilioEndPoints : ICarterModule
 
         app.MapDelete("/api/domicilio/{domicilioId}", ([FromServices] IDomicilioService domicilioService,Guid domicilioId) =>
         {
-            domicilioService.DeleteDomicilio(domicilioId);
+            domicilioService.DeleteUsuario(domicilioId);
 
             return Results.Ok();
         });

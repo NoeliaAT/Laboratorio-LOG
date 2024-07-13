@@ -5,10 +5,10 @@ namespace Api.Funcionalidades.Usuarios;
 
 public interface IUsuarioService
 {
-    void CreateUsuario(UsuarioDto usuarioDto);
+    void CreateUsuario(UsuarioCommandDto usuarioDto);
     void DeleteUsuario(Guid usuarioId);
-    List<Usuario> GetUsuarios();
-    void UpdateUsuario(Guid usuarioId, UsuarioDto usuarioDto);
+    List<UsuarioQueryDto> GetUsuarios();
+    void UpdateUsuario(Guid usuarioId, UsuarioCommandDto usuarioDto);
 }
 
 public class UsuarioService : IUsuarioService
@@ -20,7 +20,7 @@ public class UsuarioService : IUsuarioService
         this.context = context;
     }
 
-    public void CreateUsuario(UsuarioDto usuarioDto)
+    public void CreateUsuario(UsuarioCommandDto usuarioDto)
     {
         context.Usuarios.Add(new Usuario(usuarioDto.Nombre, usuarioDto.Apellido, usuarioDto.Direccion));
 
@@ -38,12 +38,12 @@ public class UsuarioService : IUsuarioService
         }
     }
 
-    public List<Usuario> GetUsuarios()
+    public List<UsuarioQueryDto> GetUsuarios()
     {
-        return context.Usuarios.ToList();
+        return context.Usuarios.Select(x => new UsuarioQueryDto { Id = x.Id, Nombre = x.Nombre, Apellido = x.Apellido, Direccion = x.Direccion }).ToList();
     }
 
-    public void UpdateUsuario(Guid usuarioId, UsuarioDto usuarioDto)
+    public void UpdateUsuario(Guid usuarioId, UsuarioCommandDto usuarioDto)
     {
         var usuario = context.Usuarios.FirstOrDefault(x => x.Id == usuarioId);
 

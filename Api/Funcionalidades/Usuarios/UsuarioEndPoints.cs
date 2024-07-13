@@ -11,14 +11,14 @@ public class UsuarioEndPoints : ICarterModule
             return Results.Ok(usuarioService.GetUsuarios());
         });
 
-        app.MapPost("/api/usuario", ([FromServices] IUsuarioService usuarioService, UsuarioDto usuarioDto) =>
+        app.MapPost("/api/usuario", ([FromServices] IUsuarioService usuarioService, UsuarioCommandDto usuarioDto) =>
         {
             usuarioService.CreateUsuario(usuarioDto);
 
             return Results.Ok();
         });
 
-        app.MapPut("/api/usuario/{usuarioId}", ([FromServices] IUsuarioService usuarioService,Guid usuarioId, UsuarioDto usuarioDto) =>
+        app.MapPut("/api/usuario/{usuarioId}", ([FromServices] IUsuarioService usuarioService,Guid usuarioId, UsuarioCommandDto usuarioDto) =>
         {
             usuarioService.UpdateUsuario(usuarioId, usuarioDto);
 

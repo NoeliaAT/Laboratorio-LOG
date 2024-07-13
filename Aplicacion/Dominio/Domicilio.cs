@@ -22,6 +22,8 @@ public class Domicilio
     [Required]
     public int CodigoPostal { get; set; }
 
+    public List<Usuario> Usuarios {get; set; } =  new List<Usuario>();
+
     public Domicilio(string calle, int altura, int codigoPostal)
     {
         this.Calle = calle;
@@ -34,7 +36,7 @@ public class Domicilio
         Calle = calle;
     }
 
-    public void AgregarUsuario(Usuario usuario) => Usuario.Add(usuario);
+    public void AgregarUsuario(Usuario usuario) => Usuarios.Add(usuario);
 
-    public void BorrarUsuario(Usuario usuario) => Usuario.Remove(usuario);
+    public void BorrarUsuario(Usuario usuario) => Usuarios.Remove(usuario);
 }

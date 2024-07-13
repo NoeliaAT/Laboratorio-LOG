@@ -32,14 +32,4 @@ public class Usuario
         this.Apellido = apellido;
         this.Direccion = direccion;
     }
-
-    internal static void Add(Usuario usuario)
-    {
-        throw new NotImplementedException();
-    }
-
-    internal static void Remove(Usuario usuario)
-    {
-        throw new NotImplementedException();
-    }
 }
